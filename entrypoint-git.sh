@@ -16,8 +16,8 @@ fi
 export GIT_PATH=$AIRFLOW_HOME/git
 git clone $GIT_REPO $GIT_PATH;
 
-if [ -n "${GIT_BRACH}" ]; then
-    (cd $GIT_PATH; git checkout $GIT_BRACH)
+if [ -n "${GIT_BRANCH}" ]; then
+    (cd $GIT_PATH; git checkout $GIT_BRANCH)
 fi
 
 rm -r dags/
