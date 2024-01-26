@@ -21,9 +21,9 @@ if [ -n "${GIT_BRANCH}" ]; then
 fi
 
 rm -r dags/
-ln -s $GIT_PATH/$DAGS_PATH
+ln -s $GIT_PATH/$DAGS_PATH $AIRFLOW_HOME/dags
 ln -s $GIT_PATH/$REQUIREMENTS_PATH
-ln -s $GIT_PATH/$AIRFLOW_CONFIG_PATH
+ln -s $GIT_PATH/$AIRFLOW_CONFIG_PATH $AIRFLOW_HOME/airflow.cfg
 
 pip install -r $REQUIREMENTS_PATH
 
