@@ -25,7 +25,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME:latest
         
       - name: Docker Push
-       if: startsWith(github.ref, 'refs/tags/') # This condition ensures it's a tag push
+        if: startsWith(github.ref, 'refs/tags/') # This condition ensures it's a tag push
         run: |
           docker push $IMAGE_NAME:latest
           docker tag $IMAGE_NAME:latest $IMAGE_NAME:$RELEASE_VERSION
