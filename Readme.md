@@ -1,14 +1,14 @@
 # Airflow Git Runner
 
-Airflow Git Runner es un proyecto que permite descargar un repositorio de Git, instalar los requisitos y ejecutar Apache Airflow, por defecto en modo standalone.
+Airflow Git Runner is a project that allows you to download a Git repository, install the requirements and run Apache Airflow, by default in standalone mode.
 
-De esta manera evitar la necesidad de compilar una imagen custom para para ejecución de airflow.
+This way you avoid the need to compile a custom image for airflow execution.
 
-- Soporta clonado ssh de repositorios SSH copiando la clave privada a /home/airflow/.ssh/id_rsa
+- Supports ssh cloning of SSH repositories by copying the private key to /home/airflow/.ssh/id_rsa
 
-## Uso
+## Use
 
-```
+```yaml
 version: '3'
 services:
   airflowgit:
@@ -16,12 +16,27 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - $PWD/id_rsa:/home/airflow/.ssh/id_rsa
+      # SHARE ID_RSA TO DOCKER
+      - $PWD/.ssh/id_rsa:/home/airflow/.ssh/id_rsa
+
+      # PERSISTENT REQUIREMENTS INSTALL
+      - python:/home/airflow/.local/lib/python3.8
     environment:
-      - GIT_REPO=
-      - GIT_BRANCH=
-      - AIRFLOW_CONFIG_PATH=
+      - GIT_REPO= # COMPLETE
+      - GIT_BRANCH="main"
+      - DAGS_PATH="dags"
+      - REQUIREMENTS_PATH="requirements.txt"
+      - AIRFLOW_CONFIG_PATH="airflow.cfg"
+
+volumes:
+  python:
 ```
+
+## Example GIT_REPO structure
+
+- /dags: Code for run in airflow with dag.py
+- requirements.txt: requirements for install in docker for run project.
+- airflow.cfg: settings for run airflow
 
 ## Dockerhub
 
