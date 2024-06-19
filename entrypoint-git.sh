@@ -4,8 +4,8 @@ SSH_DIR="$HOME/.ssh"
 
 mkdir -p $SSH_DIR;
 mkdir -p $AIRFLOW_HOME 
-# && chown $AIRFLOW_UID:root $AIRFLOW_HOME
-
+# Si se encuentra un archivo ID_RSA se copia a la carpeta SSH
+[ -e /.ssh/id_rsa ] && cp /.ssh/id_rsa $SSH_DIR/id_rsa
 # Verificar si hay claves privadas en el directorio .ssh
 if [ -n "ls $SSH_DIR/id_*" ]; then
     ssh-keyscan -t rsa github.com >> $SSH_DIR/known_hosts
