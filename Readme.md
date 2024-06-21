@@ -17,7 +17,7 @@ services:
       - "8080:8080"
     volumes:
       # SHARE ID_RSA TO DOCKER
-      - $PWD/.ssh/id_rsa:/home/airflow/.ssh/id_rsa
+      - $PWD/.ssh/id_rsa:/.ssh/id_rsa
 
       # PERSISTENT REQUIREMENTS INSTALL
       - python:/home/airflow/.local/lib/python3.8
