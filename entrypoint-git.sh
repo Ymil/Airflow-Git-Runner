@@ -34,6 +34,10 @@ else
 fi
 
 cd $AIRFLOW_HOME;
+
+## Si el webserver.pid existe se elimina
+[ -e $AIRFLOW_HOME/airflow-webserver.pid ] && rm -rf $AIRFLOW_HOME/airflow-webserver.pid
+
 [ -e $AIRFLOW_HOME/dags ] && rm -rf $AIRFLOW_HOME/dags
 ln -fs $GIT_PATH/$DAGS_PATH $AIRFLOW_HOME/dags
 ln -fs $GIT_PATH/$REQUIREMENTS_PATH
